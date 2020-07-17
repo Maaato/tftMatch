@@ -146,11 +146,11 @@ export default {
           }
         }
       }
-      console.log(`-- Next Match --`);
-      console.log(`this.playersInMatch.length : ${this.playersInMatch.length}`);
-      console.log(`this.historyMatch.length : ${this.historyMatch.length}`);
-      console.log(`this.probablyMatch.length : ${this.probablyMatch.length}`);
-      console.log(`this.c : ${this.c}`);
+      //console.log(`-- Next Match --`);
+      //console.log(`this.playersInMatch.length : ${this.playersInMatch.length}`);
+      //console.log(`this.historyMatch.length : ${this.historyMatch.length}`);
+      //console.log(`this.probablyMatch.length : ${this.probablyMatch.length}`);
+      //console.log(`this.c : ${this.c}`);
       
     },
     eliPlayer: function(playerInMatch) {
