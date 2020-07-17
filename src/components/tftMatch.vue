@@ -106,7 +106,8 @@ export default {
       playersInMatch: [],
       historyMatch: [],
       probablyMatch: [],
-      fullHistoryMatch: []
+      fullHistoryMatch: [],
+      c: 4
     };
   },
   methods: {
@@ -125,26 +126,14 @@ export default {
     },
     nextMatch: function(playerSlected) {
       this.fullHistoryMatch.push(playerSlected);
-      if (this.historyMatch.length < 4) {
+      if (this.historyMatch.length < this.c) {
         this.historyMatch.push(playerSlected);
-      } else if (this.historyMatch.length >= 4) {
+      } else if (this.historyMatch.length == this.c) {
         this.historyMatch.shift();
         this.historyMatch.push(playerSlected);
         this.probablyMatch = [];
       }
-      if (this.historyMatch.length === 4) {
-        for (let i = 0; i < this.playersInMatch.length; i++) {
-          for (let x = 0; x < this.historyMatch.length; x++) {
-            let encontrado = this.historyMatch.find(
-              p => p == this.playersInMatch[i]
-            );
-            if (!encontrado) {
-              this.probablyMatch.push(this.playersInMatch[i]);
-              break;
-            }
-          }
-        }
-      } else if (this.historyMatch.length >= 4) {
+      if (this.historyMatch.length == this.c) {
         for (let i = 0; i < this.playersInMatch.length; i++) {
           for (let x = 0; x < this.historyMatch.length; x++) {
             let encontrado = this.historyMatch.find(
@@ -157,12 +146,19 @@ export default {
           }
         }
       }
+      console.log(`-- Next Match --`);
+      console.log(`this.playersInMatch.length : ${this.playersInMatch.length}`);
+      console.log(`this.historyMatch.length : ${this.historyMatch.length}`);
+      console.log(`this.probablyMatch.length : ${this.probablyMatch.length}`);
+      console.log(`this.c : ${this.c}`);
+      
     },
     eliPlayer: function(playerInMatch) {
       let i = this.playersInMatch.indexOf(playerInMatch);
       if (i !== -1) this.playersInMatch.splice(i, 1);
       this.historyMatch = [];
       this.probablyMatch = [];
+      if (this.playersInMatch.length <= 4) this.c--;
     }
   }
 };
