@@ -19,9 +19,13 @@
                       v-model="newPlayer"
                       v-on:keyup.enter="nwPlayer(newPlayer)"
                       placeholder="Summoner Name"
-                      class="form-control m-1" style="width:11em;"
+                      class="form-control m-1"
+                      style="width:11em;"
                     />
-                    <button class="btn btn-primary" v-on:click="nwPlayer(newPlayer)">
+                    <button
+                      class="btn btn-primary"
+                      v-on:click="nwPlayer(newPlayer)"
+                    >
                       <i class="material-icons align-middle">add</i>
                     </button>
                   </div>
@@ -44,7 +48,9 @@
                       type="button"
                       class="btn btn-primary m-1"
                       v-on:click="nextMatch(playerInMatch)"
-                    >{{playerInMatch}}</button>
+                    >
+                      {{ playerInMatch }}
+                    </button>
                     <button
                       type="button"
                       class="btn btn-danger m-1"
@@ -68,7 +74,9 @@
                     id="bx-players"
                     class="form-group align-center text-center"
                   >
-                    <button type="button" class="btn btn-primary" disabled>{{probMatch}}</button>
+                    <button type="button" class="btn btn-primary" disabled>
+                      {{ probMatch }}
+                    </button>
                   </div>
                 </div>
               </div>
@@ -85,10 +93,20 @@
                   v-for="playerMatch in fullHistoryMatch"
                   :key="playerMatch"
                 >
-                  <button type="button" class="btn btn-primary" disabled>{{playerMatch}}</button>
+                  <button type="button" class="btn btn-primary" disabled>
+                    {{ playerMatch }}
+                  </button>
                 </li>
               </ul>
             </div>
+            <button
+              type="button"
+              class="btn btn-primary m-1"
+              v-on:click="reload()"
+            >
+              Reload
+              <i class="tiny material-icons align-middle">refresh</i>
+            </button>
           </div>
         </div>
       </div>
@@ -101,13 +119,12 @@ export default {
   name: "TftMatch",
   data() {
     return {
-      userName: null,
       newPlayer: null,
       playersInMatch: [],
       historyMatch: [],
       probablyMatch: [],
       fullHistoryMatch: [],
-      c: 4
+      c: 4,
     };
   },
   methods: {
@@ -115,7 +132,7 @@ export default {
       if (this.playersInMatch.length >= 7) return false;
       if (newPlayer === null || newPlayer === undefined || newPlayer === "")
         return false;
-      let f = this.playersInMatch.find(x => x == newPlayer);
+      let f = this.playersInMatch.find((x) => x == newPlayer);
       if (f === null || f === undefined) {
         this.playersInMatch.push(newPlayer);
         this.newPlayer = "";
@@ -136,31 +153,49 @@ export default {
       if (this.historyMatch.length == this.c) {
         for (let i = 0; i < this.playersInMatch.length; i++) {
           for (let x = 0; x < this.historyMatch.length; x++) {
-            let encontrado = this.historyMatch.find(
-              p => p == this.playersInMatch[i]
-            );
-            if (!encontrado) {
+            let f = this.historyMatch.find((p) => p == this.playersInMatch[i]);
+            if (!f) {
               this.probablyMatch.push(this.playersInMatch[i]);
               break;
             }
           }
         }
       }
-      //console.log(`-- Next Match --`);
-      //console.log(`this.playersInMatch.length : ${this.playersInMatch.length}`);
-      //console.log(`this.historyMatch.length : ${this.historyMatch.length}`);
-      //console.log(`this.probablyMatch.length : ${this.probablyMatch.length}`);
-      //console.log(`this.c : ${this.c}`);
-      
+      /*console.log(`-- Next Match --`);
+      console.log(`this.playersInMatch : ${this.playersInMatch}`);
+      console.log(`this.historyMatch.: ${this.historyMatch}`);
+      console.log(`this.probablyMatch : ${this.probablyMatch}`);
+      console.log(`this.c : ${this.c}`);*/
     },
     eliPlayer: function(playerInMatch) {
       let i = this.playersInMatch.indexOf(playerInMatch);
       if (i !== -1) this.playersInMatch.splice(i, 1);
       this.historyMatch = [];
       this.probablyMatch = [];
-      if (this.playersInMatch.length <= 4) this.c--;
-    }
-  }
+      switch (true) {
+        case this.playersInMatch.length == 6 || this.playersInMatch.length == 4:
+          this.c = 3;
+          break;
+        case this.playersInMatch.length == 5:
+          this.c = 4;
+          break;
+        case this.playersInMatch.length == 3:
+          this.c = 2;
+          break;
+        case this.playersInMatch.length == 2:
+          this.c = 1;
+          break;
+      }
+    },
+    reload: function() {
+      this.c = 4;
+      this.fullHistoryMatch = [];
+      this.historyMatch = [];
+      this.playersInMatch = [];
+      this.probablyMatch = [];
+      this.newPlayer = "";
+    },
+  },
 };
 </script>
 
