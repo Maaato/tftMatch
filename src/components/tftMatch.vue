@@ -19,7 +19,7 @@
                       v-model="newPlayer"
                       v-on:keyup.enter="nwPlayer(newPlayer)"
                       placeholder="Summoner Name"
-                      class="form-control m-1"
+                      class="form-control m-1" style="width:11em;"
                     />
                     <button class="btn btn-primary" v-on:click="nwPlayer(newPlayer)">
                       <i class="material-icons align-middle">add</i>
