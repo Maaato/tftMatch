@@ -4,8 +4,8 @@
 <br><br>
 <a>tft-match te permite conocer a tus posibles próximos oponentes, para que puedas posicionarte contra ellos y así ganar una pequeña ventaja.</a>
 
-
 <h3 align="center"><i>Demo</i>: https://tft-match.herokuapp.com</h3>
+
 ## Instructions
 
 * <a>`😉 Enter all the players in the game, except you`</a>
