@@ -1,17 +1,28 @@
 <template>
   <div class="container">
     <div class="text-center">
-      <img
-        src="https://vignette.wikia.nocookie.net/leagueoflegends/images/1/1e/Teamfight_Tactics_logo.png/revision/latest?cb=20200307230923"
-        class="img-fluid w-25 p-3"
-      />
+      <img src="https://vignette.wikia.nocookie.net/leagueoflegends/images/1/1e/Teamfight_Tactics_logo.png/revision/latest?cb=20200307230923" class="img-fluid w-25"/>
     </div>
     <div class="d-flex justify-content-center align-items-center">
       <div class="container">
         <div class="row">
+          <div class="col-12">
+            <div class="card mb-3 text-white bg-tft border-dark">
+              <div class="card-body">
+                <div class="card-text">
+                  <ul class="list-group text-left text-white">
+                    <li>😉<i> Enter all the players in the game, except you</i></li>
+                    <li>⚔️<i> After the fourth game, you will have the next opponents.</i></li>
+                    <li>💀<i> When a player dies, you must remove them from the list to restart the cycle.</i></li>
+                    <li>👊<i> Have fun and win the match.</i></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="col-4">
             <div class="card text-white bg-tft border-dark">
-              <h5 class="card-header text-center">Match Players (7)</h5>
+              <h5 class="card-header text-center">Enter Match Players (7)</h5>
               <div class="card-body">
                 <div class="card-text">
                   <div id="bx-players" class="form-inline">
@@ -39,8 +50,7 @@
               <div class="card-body">
                 <div class="card-text">
                   <div
-                    v-for="playerInMatch in playersInMatch"
-                    :key="playerInMatch"
+                    v-for="playerInMatch in playersInMatch" :key="playerInMatch"
                     id="bx-players"
                     class="form-group align-center text-center"
                   >
@@ -83,7 +93,7 @@
             </div>
           </div>
         </div>
-        <div class="card mt-5 text-white bg-tft border-dark">
+        <div class="card mt-2 mb-3 text-white bg-tft border-dark mb-2">
           <h5 class="card-header text-center">Match History</h5>
           <div class="card-body">
             <div class="card-text">
@@ -104,7 +114,7 @@
               class="btn btn-primary m-1"
               v-on:click="reload()"
             >
-              Reload
+              New Match
               <i class="tiny material-icons align-middle">refresh</i>
             </button>
           </div>
@@ -198,21 +208,9 @@ export default {
   },
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
 li {
   display: inline-block;
   margin: 0 10px;
-}
-a {
-  color: #42b983;
 }
 </style>
