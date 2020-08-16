@@ -12,7 +12,7 @@
                 <div class="card-text">
                   <ul class="list-group text-left text-white">
                     <li>😉<i> Enter all the players in the game, except you</i></li>
-                    <li>⚔️<i> After the fourth game, you will have the next opponents.</i></li>
+                    <li>⚔️<i> At the start after the fourth game, you will have the possible next opponents.</i></li>
                     <li>💀<i> When a player dies, you must remove them from the list to restart the cycle.</i></li>
                     <li>👊<i> Have fun and win the match.</i></li>
                   </ul>
