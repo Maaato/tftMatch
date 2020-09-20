@@ -1,39 +1,49 @@
 <template>
   <div id="app">
-    <tftMatch/>
+    <tftMatch />
   </div>
 </template>
 
 <script>
-import TftMatch from './components/tftMatch.vue'
+import TftMatch from "./components/tftMatch.vue";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    TftMatch
-  }
-}
+    TftMatch,
+  },
+};
 </script>
 
 <style>
+@font-face {
+  font-family: "roboto_mono";
+  src: url("./assets/fonts/robotomono-bolditalic-webfont.woff2") format("woff2"),
+    url("./assets/fonts/robotomono-bolditalic-webfont.woff2") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: roboto_mono, helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  /*margin-top: 60px;*/
 }
 body {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/blta164bf600709f56d/5ededb42bfd91c2c81be8b67/TFT_Midset_Launch_Trailer_Banner.jpg?quality=100")
-      no-repeat center center fixed !important;
-  background-size: cover !important;
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+    url("./assets/images/tft-set-4-fates-splash.jpg") no-repeat center center
+      fixed;
+  background-size: cover;
 }
 
 .bg-tft {
-  background: linear-gradient(
-    rgba(42, 32, 80, 1),
-    rgba(42, 32, 80, 1)
-  ) !important;
+  background: linear-gradient(rgba(0, 166, 255, 1), rgba(0, 166, 255, 1));
 }
+
+li {
+  display: inline-block !important;
+  margin: 0 10px;
+}
+
 </style>
