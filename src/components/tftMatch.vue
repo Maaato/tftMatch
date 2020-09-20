@@ -62,7 +62,7 @@
               <div class="card-body">
                 <div class="card-text">
                   <div
-                    v-for="(playerInMatch,index) in playersInMatch"
+                    v-for="(playerInMatch, index) in playersInMatch"
                     :key="index"
                     id="bx-players"
                     class="form-group align-center text-center"
@@ -92,7 +92,7 @@
               <div class="card-body">
                 <div class="card-text">
                   <div
-                    v-for="(probMatch,index) in probablyMatch"
+                    v-for="(probMatch, index) in probablyMatch"
                     :key="index"
                     id="bx-players"
                     class="form-group align-center text-center"
@@ -113,7 +113,7 @@
               <ul class="list-inline">
                 <li
                   class="list-group-item bg-tft border-0"
-                  v-for="(playerMatch,index) in fullHistoryMatch"
+                  v-for="(playerMatch, index) in fullHistoryMatch"
                   :key="index"
                 >
                   <button type="button" class="btn btn-primary" disabled>
@@ -130,6 +130,9 @@
               New Match
               <i class="tiny material-icons align-middle">refresh</i>
             </button>
+          </div>
+          <div class="card-footer">
+           <a href="https://github.com/Maaato/tftMatch" class="text-white"><img src="../assets/images/GitHub-Mark-32px.png" class="img-fluid mr-2" />Made by Maaato</a>
           </div>
         </div>
       </div>
@@ -152,9 +155,11 @@ export default {
   methods: {
     addPlayer: function(player) {
       if (this.playersInMatch.length >= 7) return false;
-      if (player === null || player === undefined || player === "") return false;
+      if (player === null || player === undefined || player === "")
+        return false;
       let findPlayer = this.playersInMatch.find((p) => p == player);
-      if (findPlayer === null || findPlayer === undefined) this.playersInMatch.push(player);
+      if (findPlayer === null || findPlayer === undefined)
+        this.playersInMatch.push(player);
       this.player = null;
       return;
     },
@@ -164,7 +169,7 @@ export default {
       this.Matchs = [];
       this.probablyMatch = [];
       switch (true) {
-        case this.playersInMatch.length == 6 || this.playersInMatch.length == 4: 
+        case this.playersInMatch.length == 6 || this.playersInMatch.length == 4:
           this.countMatchs = 3;
           break;
         case this.playersInMatch.length == 5:
