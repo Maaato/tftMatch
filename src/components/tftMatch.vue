@@ -7,34 +7,36 @@
       <div class="container">
         <div class="row">
           <div class="col-12">
-            <div class="card mb-3 text-white bg-tft border-primary">
+            <div class="card mb-3 text-white bg-tft">
               <div class="card-body">
                 <div class="card-text">
                   <ul class="list-group text-left text-white">
                     <li>
-                      😉<i> Enter all the players in the game, except you.</i>
+                      😉<a> Enter all the players in the game, except you.</a>
                     </li>
                     <li>
-                      ⚔️<i>
+                      ⚔️<a>
                         At the start after the fourth game, you will have the
-                        possible next opponents.</i
+                        possible next opponents.</a
                       >
                     </li>
                     <li>
-                      💀<i>
+                      💀<a>
                         When a player dies, you must remove them from the list
-                        to restart the cycle.</i
+                        to restart the cycle.</a
                       >
                     </li>
-                    <li>👊<i> Have fun and win the match.</i></li>
+                    <li>👊<a> Have fun and win the match.</a></li>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
           <div class="col-4">
-            <div class="card text-white bg-tft border-primary">
-              <h5 class="card-header text-center">Enter Match Players (7)</h5>
+            <div class="card text-white bg-tft ">
+              <h5 class="card-header text-center h6">
+                Enter Match Players (7)
+              </h5>
               <div class="card-body">
                 <div class="card-text">
                   <div id="bx-players" class="form-inline">
@@ -57,8 +59,8 @@
             </div>
           </div>
           <div class="col-4">
-            <div class="card text-white bg-tft border-primary">
-              <h5 class="card-header text-center">Select Current Match</h5>
+            <div class="card text-white bg-tft ">
+              <h5 class="card-header text-center h6">Select Current Match</h5>
               <div class="card-body">
                 <div class="card-text">
                   <div
@@ -87,8 +89,8 @@
             </div>
           </div>
           <div class="col-4">
-            <div class="card text-white bg-tft border-primary">
-              <h5 class="card-header text-center">Probably Match</h5>
+            <div class="card text-white bg-tft ">
+              <h5 class="card-header text-center h6">Probably Match</h5>
               <div class="card-body">
                 <div class="card-text">
                   <div
@@ -97,7 +99,7 @@
                     id="bx-players"
                     class="form-group align-center text-center"
                   >
-                    <button type="button" class="btn btn-primary" disabled>
+                    <button type="button" class="btn btn-danger" disabled>
                       {{ probMatch }}
                     </button>
                   </div>
@@ -106,8 +108,8 @@
             </div>
           </div>
         </div>
-        <div class="card mt-2 mb-3 text-white bg-tft border-primary mb-2">
-          <h5 class="card-header text-center">Match History</h5>
+        <div class="card mt-2 mb-3 text-white bg-tft  mb-2">
+          <h5 class="card-header text-center h6">Match History</h5>
           <div class="card-body">
             <div class="card-text">
               <ul class="list-inline">
@@ -116,7 +118,7 @@
                   v-for="(playerMatch, index) in fullHistoryMatch"
                   :key="index"
                 >
-                  <button type="button" class="btn btn-primary" disabled>
+                  <button type="button" class="btn btn-dark" disabled>
                     {{ playerMatch }}
                   </button>
                 </li>
@@ -124,7 +126,7 @@
             </div>
             <button
               type="button"
-              class="btn btn-light m-1"
+              class="btn btn-light m-1 text-dark"
               v-on:click="reload()"
             >
               New Match
@@ -132,7 +134,12 @@
             </button>
           </div>
           <div class="card-footer">
-           <a href="https://github.com/Maaato/tftMatch" class="text-white"><img src="../assets/images/GitHub-Mark-32px.png" class="img-fluid mr-2" />Made by Maaato</a>
+            <a href="https://github.com/Maaato/tftMatch" class="text-white"
+              ><img
+                src="../assets/images/GitHub-Mark-Light-32px.png"
+                class="mr-2"
+              />Made by Maaato</a
+            >
           </div>
         </div>
       </div>
@@ -155,19 +162,17 @@ export default {
   methods: {
     addPlayer: function(player) {
       if (this.playersInMatch.length >= 7) return false;
-      if (player === null || player === undefined || player === "")
-        return false;
+      if (player === null || player === "") return false;
       let findPlayer = this.playersInMatch.find((p) => p == player);
-      if (findPlayer === null || findPlayer === undefined)
+      if (findPlayer === undefined) {
         this.playersInMatch.push(player);
-      this.player = null;
+        this.player = null;
+      }
       return;
     },
     deletePlayer: function(playerInMatch) {
       let i = this.playersInMatch.indexOf(playerInMatch);
       if (i !== -1) this.playersInMatch.splice(i, 1);
-      this.Matchs = [];
-      this.probablyMatch = [];
       switch (true) {
         case this.playersInMatch.length == 6 || this.playersInMatch.length == 4:
           this.countMatchs = 3;
@@ -182,6 +187,8 @@ export default {
           this.countMatchs = 1;
           break;
       }
+      this.Matchs = [];
+      this.probablyMatch = [];
     },
     nextMatch: function(playerSlected) {
       this.fullHistoryMatch.push(playerSlected);
@@ -195,8 +202,10 @@ export default {
       if (this.Matchs.length == this.countMatchs) {
         for (let i = 0; i < this.playersInMatch.length; i++) {
           for (let x = 0; x < this.Matchs.length; x++) {
-            let f = this.Matchs.find((p) => p == this.playersInMatch[i]);
-            if (!f) {
+            let findMatch = this.Matchs.find(
+              (p) => p == this.playersInMatch[i]
+            );
+            if (!findMatch) {
               this.probablyMatch.push(this.playersInMatch[i]);
               break;
             }
